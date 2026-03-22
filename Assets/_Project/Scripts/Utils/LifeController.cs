@@ -36,12 +36,10 @@ public class LifeController : MonoBehaviour
         {
             _currenthp = hp;
 
-            //_onHPChanged.Invoke(_currenthp, _maxHP);
             OnHealthChanged?.Invoke(_currenthp, _maxHP);
 
             if (_currenthp <= 0)
             {
-                //_onDefeated.Invoke();
                 OnDefeated?.Invoke();
             }
         }

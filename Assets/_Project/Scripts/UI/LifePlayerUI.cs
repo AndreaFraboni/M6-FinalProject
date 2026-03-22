@@ -10,7 +10,6 @@ public class LifePlayerUI : MonoBehaviour
 
     private void Awake()
     {
-        // Auto-assegnazione se non settato
         if (_lifeController == null) _lifeController = GetComponentInParent<LifeController>();
     }
 
