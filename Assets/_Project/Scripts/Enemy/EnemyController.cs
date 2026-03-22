@@ -1,11 +1,7 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
-    [Header("Life Bar UI")]
-    [SerializeField] private Image _bar_lifeBarFillable;
-
     [Header("Audio Manager")]
     [SerializeField] private AudioManager _audioManager;
 
@@ -23,15 +19,15 @@ public class EnemyController : MonoBehaviour
 
     public bool isAlive = true;
 
-    private Vector2 direction;
+    private Vector3 direction;
 
     private void Awake()
     {
         if (_rb == null) _rb = GetComponentInParent<Rigidbody>();
-
         if (_lifeController == null) _lifeController = GetComponentInParent<LifeController>();
         if (_audioManager == null) _audioManager = FindAnyObjectByType<AudioManager>();
         if (_enemyAnimation == null) _enemyAnimation = GetComponentInParent<EnemyAnimation>();
+        if (_capsuleCollider == null) _capsuleCollider = GetComponent<CapsuleCollider>();
 
         if (_target == null)
         {
@@ -45,9 +41,9 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
-        if (_target == null)
+        if (_target == null || _rb == null)
         {
-            direction = Vector2.zero;
+            direction = Vector3.zero;
             return;
         }
 

@@ -9,20 +9,15 @@ public class LifeController : MonoBehaviour
     [SerializeField] private bool _fullHPOnStart = true;
 
     [Header("Unity Events")]
-    //[SerializeField] private UnityEvent<int, int> _onHPChanged;
     [SerializeField] private UnityEvent _onDefeated;
 
-    public Action<int, int> _onHealthChange;
-
-    [Header("Player Refs")]
-    [SerializeField] private PlayerController _pc;
+    public Action<int, int> OnHealthChanged;
 
     [Header("Audio Manager")]
     [SerializeField] private AudioManager _audioManager;
 
     private void Awake()
     {
-        if (_pc == null) _pc = GetComponent<PlayerController>();
         if (_audioManager == null) _audioManager = FindAnyObjectByType<AudioManager>();
     }
 
@@ -44,7 +39,7 @@ public class LifeController : MonoBehaviour
             _currenthp = hp;
 
             //_onHPChanged.Invoke(_currenthp, _maxHP);
-            _onHealthChange?.Invoke(_currenthp, _maxHP);
+            OnHealthChanged?.Invoke(_currenthp, _maxHP);
 
             if (_currenthp <= 0)
             {
@@ -72,8 +67,12 @@ public class LifeController : MonoBehaviour
         AddHp(-damage);
     }
 
-    public void Defeated()
-    {
-        Destroy(gameObject);
-    }
+    //public void Heal(int amount)
+    //{
+    //    AddHp(amount);
+    //}
+
 }
+
+
+

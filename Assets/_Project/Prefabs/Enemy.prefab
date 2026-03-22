@@ -113,7 +113,6 @@ Transform:
   m_Children:
   - {fileID: 1442021593875283406}
   - {fileID: 6956659166840030192}
-  - {fileID: 6624262824394517811}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &739634890278821379
@@ -186,9 +185,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d604a9d84d489d74bbe05271b09a50e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bar_lifeBarFillable: {fileID: 7759127008973908185}
   _audioManager: {fileID: 0}
   _enemyAnimation: {fileID: 0}
+  _target: {fileID: 0}
   isAlive: 1
 --- !u!114 &4352313562229350888
 MonoBehaviour:
@@ -205,21 +204,6 @@ MonoBehaviour:
   _currenthp: 100
   _maxHP: 100
   _fullHPOnStart: 1
-  _onHPChanged:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6387442817829768493}
-        m_TargetAssemblyTypeName: UIEnemyLifeController, Assembly-CSharp
-        m_MethodName: OnChangeLife
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   _onDefeated:
     m_PersistentCalls:
       m_Calls:
@@ -235,7 +219,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _pc: {fileID: 0}
   _audioManager: {fileID: 0}
 --- !u!114 &2573966032064170445
 MonoBehaviour:
@@ -251,12 +234,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _verticalSpeedParamName: vSpeed
   _horizontalSpeedParamName: hSpeed
-  _walkBool: isWalking
-  _runBool: isRunning
   _fallBool: isFalling
   _jumpTrig: JumpUp
   _landTrig: Landing
-  _fallThreshold: -0.1
 --- !u!1 &3388422201669585514
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,8 +249,9 @@ GameObject:
   - component: {fileID: 7038706669316081513}
   - component: {fileID: 8526611701682600339}
   - component: {fileID: 2689405520929161886}
+  - component: {fileID: 2384855950563523539}
   m_Layer: 7
-  m_Name: LifeBarCanvas
+  m_Name: LifeEnemyUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -359,6 +340,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &2384855950563523539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3388422201669585514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18744a026bce3054bb09b19805b79979, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bar_lifeBarFillable: {fileID: 7759127008973908185}
 --- !u!1 &5327561236947312038
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,7 +365,7 @@ GameObject:
   - component: {fileID: 2612313760747813637}
   - component: {fileID: 7759127008973908185}
   m_Layer: 7
-  m_Name: Fillbar
+  m_Name: Filled
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -434,51 +428,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &7121046588534764986
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6624262824394517811}
-  - component: {fileID: 6387442817829768493}
-  m_Layer: 7
-  m_Name: UIEnemyLifeController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6624262824394517811
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7121046588534764986}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1663219233545823485}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6387442817829768493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7121046588534764986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18744a026bce3054bb09b19805b79979, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _bar_lifeBarFillable: {fileID: 7759127008973908185}
 --- !u!1001 &1407849334159809061
 PrefabInstance:
   m_ObjectHideFlags: 0
