@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 public class LifeController : MonoBehaviour
@@ -7,9 +8,11 @@ public class LifeController : MonoBehaviour
     [SerializeField] private int _maxHP = 100;
     [SerializeField] private bool _fullHPOnStart = true;
 
-    [Header("Unity Event on Health Event")]
-    [SerializeField] private UnityEvent<int, int> _onHPChanged;
+    [Header("Unity Events")]
+    //[SerializeField] private UnityEvent<int, int> _onHPChanged;
     [SerializeField] private UnityEvent _onDefeated;
+
+    public Action<int, int> _onHealthChange;
 
     [Header("Player Refs")]
     [SerializeField] private PlayerController _pc;
@@ -40,7 +43,8 @@ public class LifeController : MonoBehaviour
         {
             _currenthp = hp;
 
-            _onHPChanged.Invoke(_currenthp, _maxHP);
+            //_onHPChanged.Invoke(_currenthp, _maxHP);
+            _onHealthChange?.Invoke(_currenthp, _maxHP);
 
             if (_currenthp <= 0)
             {

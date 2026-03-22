@@ -41621,7 +41621,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.01
 --- !u!222 &1765213408811765993
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -42409,6 +42409,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4691fe43b6b873146986f5eba7682fd7, type: 3}
+--- !u!114 &2506793061313645565 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6224743977945578043, guid: 4691fe43b6b873146986f5eba7682fd7,
+    type: 3}
+  m_PrefabInstance: {fileID: 2506793061313645564}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cc4bb4139cd7c8488e352740e663add, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2529091421735200407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42786,6 +42798,7 @@ GameObject:
   - component: {fileID: 3854311163982940790}
   - component: {fileID: 981861396084249695}
   - component: {fileID: 1739743854706633336}
+  - component: {fileID: 3854311163982940791}
   m_Layer: 5
   m_Name: LifeBar
   m_TagString: Untagged
@@ -43333,6 +43346,21 @@ RectTransform:
   m_AnchoredPosition: {x: 16, y: -21}
   m_SizeDelta: {x: 151, y: 76}
   m_Pivot: {x: 0, y: 1}
+--- !u!114 &3854311163982940791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3261327763890041444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4521b04a0a54fa342a279c9dab288c84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lifeController: {fileID: 2506793061313645565}
+  _currenLifeText: {fileID: 4919361505252593972}
+  _bar_lifeBarFillable: {fileID: 3198255234506003291}
 --- !u!1 &3938519066823208577
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,10 +5,10 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("HUD")]
-    [SerializeField] private Image _bar_lifeBarFillable;
-    [SerializeField] private TextMeshProUGUI _lifeText;
-    [SerializeField] private TextMeshProUGUI _currentCoinstext;
+    //[Header("HUD")]
+    //[SerializeField] private Image _bar_lifeBarFillable;
+    //[SerializeField] private TextMeshProUGUI _lifeText;
+    //[SerializeField] private TextMeshProUGUI _currentCoinstext;
 
     [Header("Player movement parameters")]
     [SerializeField] private float _speed = 6.0f;
@@ -185,11 +185,11 @@ public class PlayerController : MonoBehaviour
     {
         _audioManager.PlaySFX("FootStep");
     }
-    public void OnChangeLife(int hp, int maxhp)
-    {
-        _lifeText.text = hp + "/" + maxhp;
-        _bar_lifeBarFillable.fillAmount = (float)hp / maxhp;
-    }
+    //public void OnChangeLife(int hp, int maxhp)
+    //{
+    //    //_lifeText.text = hp + "/" + maxhp;
+    //    //_bar_lifeBarFillable.fillAmount = (float)hp / maxhp;
+    //}
 
     private void StartDeathAnimation()
     {
