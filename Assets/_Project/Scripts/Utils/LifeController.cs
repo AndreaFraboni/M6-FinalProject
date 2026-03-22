@@ -8,10 +8,8 @@ public class LifeController : MonoBehaviour
     [SerializeField] private int _maxHP = 100;
     [SerializeField] private bool _fullHPOnStart = true;
 
-    [Header("Unity Events")]
-    [SerializeField] private UnityEvent _onDefeated;
-
     public Action<int, int> OnHealthChanged;
+    public event Action OnDefeated;
 
     [Header("Audio Manager")]
     [SerializeField] private AudioManager _audioManager;
@@ -43,7 +41,8 @@ public class LifeController : MonoBehaviour
 
             if (_currenthp <= 0)
             {
-                _onDefeated.Invoke();
+                //_onDefeated.Invoke();
+                OnDefeated?.Invoke();
             }
         }
     }

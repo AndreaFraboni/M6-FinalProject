@@ -11,10 +11,9 @@ public class EnemyController : MonoBehaviour
     //[SerializeField] private float _rotationSpeed = 5f;
     //[SerializeField] private float _speed = 2.0f;
 
+    [SerializeField] private LifeController _lifeController;
+
     private Rigidbody _rb;
-
-    private LifeController _lifeController;
-
     private CapsuleCollider _capsuleCollider;
 
     public bool isAlive = true;
@@ -37,6 +36,16 @@ public class EnemyController : MonoBehaviour
                 _target = go.transform;
             }
         }
+    }
+
+    private void OnEnable()
+    {
+        if (_lifeController != null) _lifeController.OnDefeated += OnDefeated;
+    }
+
+    private void OnDisable()
+    {
+        if (_lifeController != null) _lifeController.OnDefeated -= OnDefeated;
     }
 
     private void Update()

@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
     [Header("OnCoinPickup Event")]
     [SerializeField] private UnityEvent<int> _onCoinPickup;
 
+    [SerializeField] private LifeController _lifeController;
+
     private Mover _mover;
     private Rotator _rotator;
     private Rigidbody _rb;
@@ -60,7 +62,18 @@ public class PlayerController : MonoBehaviour
         if (_UIManager == null) _UIManager = FindAnyObjectByType<UIManager>();
         if (_playerAnimation == null) _playerAnimation = GetComponentInParent<PlayerAnimation>();
         if (_capsuleCollider == null) _capsuleCollider = GetComponent<CapsuleCollider>();
+        if (_lifeController == null) _lifeController = GetComponent<LifeController>();
+
         _cam = Camera.main;
+    }
+        private void OnEnable()
+    {
+        if (_lifeController != null) _lifeController.OnDefeated += OnDefeated;
+    }
+
+    private void OnDisable()
+    {
+        if (_lifeController != null) _lifeController.OnDefeated -= OnDefeated;
     }
 
     void Update()
