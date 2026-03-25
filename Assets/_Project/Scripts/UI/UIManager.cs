@@ -11,21 +11,15 @@ public class UIManager : MonoBehaviour
     public GameObject menuWinner;
 
     public bool isPaused = false;
-    AudioManager _audioManager;
 
-    private void Awake()
-    {
-        if (_audioManager == null) _audioManager = FindAnyObjectByType<AudioManager>();
-        _audioManager.UpdateSlider();
-    }
     private void Start()
     {
-        _audioManager.PlayMusic("ThemeGame");
+        if (!AudioManager.Instance.musicSource.isPlaying) AudioManager.Instance.PlayMusic("ThemeGame");
     }
 
     public void PlayClickSound()
     {
-        _audioManager.PlaySFX("MouseClickSound");
+        AudioManager.Instance.PlaySFX("MouseClickSound");
     }
 
     private void Update()
@@ -59,7 +53,7 @@ public class UIManager : MonoBehaviour
 
     public void Restart()
     {
-        _audioManager.StopAllAudioSource();
+        AudioManager.Instance.StopAllAudioSource();
         gameOver.SetActive(false);
         Time.timeScale = 1.0f;
         SceneManager.LoadScene(1);
@@ -67,29 +61,27 @@ public class UIManager : MonoBehaviour
 
     public void LoadMainMenu()
     {
-        _audioManager.StopAllAudioSource();
-
+        //AudioManager.Instance.StopAllAudioSource();
         Time.timeScale = 1.0f;
         SceneManager.LoadScene(0);
     }
-
     public void GameOver()
     {
-        _audioManager.StopAllAudioSource();
+        AudioManager.Instance.StopAllAudioSource();
         gameOver.SetActive(true);
         Invoke("ShowGameOverMenu", 1f);
     }
 
     public void ShowGameOverMenu()
     {
-        _audioManager.PlayMusic("GameOverMusic");
+        AudioManager.Instance.PlayMusic("GameOverMusic");
         gameOver.SetActive(false);
         Time.timeScale = 0;
         menuGameOver.SetActive(true);
     }
     public void Winner()
     {
-        _audioManager.StopAllAudioSource();
+        AudioManager.Instance.StopAllAudioSource();
         WinnerBanner.SetActive(true);
         Invoke("ShowWinnerMenu", 1f);
     }
@@ -97,7 +89,7 @@ public class UIManager : MonoBehaviour
     public void ShowWinnerMenu()
     {
         WinnerBanner.SetActive(false);
-        _audioManager.PlayMusic("WinnerMusic");
+        AudioManager.Instance.PlayMusic("WinnerMusic");
         Time.timeScale = 0;
         menuWinner.SetActive(true);
     }

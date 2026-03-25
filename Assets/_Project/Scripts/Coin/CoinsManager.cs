@@ -24,7 +24,6 @@ public class CoinsManager : MonoBehaviour
     private void Awake()
     {
         if (_pc == null) _pc = GetComponent<PlayerController>();
-        if (_audioManager == null) _audioManager = FindAnyObjectByType<AudioManager>();
         if (_UIManager == null) _UIManager = FindAnyObjectByType<UIManager>();
     }
 
@@ -42,7 +41,7 @@ public class CoinsManager : MonoBehaviour
         if (_currentCoins >= _coinsToPickup && !levelcompleted)
         {
             levelcompleted = true;
-            _audioManager.PlaySFX("WinSound");
+            AudioManager.Instance.PlaySFX("WinSound");
             Door.SetActive(false);
         }
     }

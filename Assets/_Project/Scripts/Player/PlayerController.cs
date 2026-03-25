@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Events;
-using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,8 +7,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _speed = 6.0f;
     [SerializeField] private float _smooth = 10f;
     [SerializeField] private float _jumpForce = 5f;
-    [Header("Audio Manager")]
-    [SerializeField] private AudioManager _audioManager;
 
     [Header("UI Manager")]
     [SerializeField] private UIManager _UIManager;
@@ -53,7 +50,6 @@ public class PlayerController : MonoBehaviour
         if (_rb == null) _rb = GetComponent<Rigidbody>();
         if (_mover == null) _mover = GetComponent<Mover>();
         if (_rotator == null) _rotator = GetComponent<Rotator>();
-        if (_audioManager == null) _audioManager = FindAnyObjectByType<AudioManager>();
         if (_UIManager == null) _UIManager = FindAnyObjectByType<UIManager>();
         if (_playerAnimation == null) _playerAnimation = GetComponentInParent<PlayerAnimation>();
         if (_capsuleCollider == null) _capsuleCollider = GetComponent<CapsuleCollider>();
@@ -61,7 +57,7 @@ public class PlayerController : MonoBehaviour
 
         _cam = Camera.main;
     }
-        private void OnEnable()
+    private void OnEnable()
     {
         if (_lifeController != null) _lifeController.OnDefeated += OnDefeated;
     }
@@ -172,14 +168,14 @@ public class PlayerController : MonoBehaviour
 
     public void GetCoins(int coinValue)
     {
-        _audioManager.PlaySFX("PickupCoin");
+        AudioManager.Instance.PlaySFX("PickupCoin");
         _currentCoins++;
         _onCoinPickup.Invoke(_currentCoins);
     }
 
     public void PlayerHitByObject()
     {
-        _audioManager.PlaySFX("GetDamage");
+        AudioManager.Instance.PlaySFX("GetDamage");
     }
 
     public void DestroyGOPlayer()
@@ -190,7 +186,7 @@ public class PlayerController : MonoBehaviour
 
     public void FootStepSound()
     {
-        _audioManager.PlaySFX("FootStep");
+        AudioManager.Instance.PlaySFX("FootStep");
     }
 
     private void StartDeathAnimation()
@@ -216,7 +212,7 @@ public class PlayerController : MonoBehaviour
         isAlive = false;
         isFiring = false;
 
-        _audioManager.PlaySFX("DeathSound");
+        AudioManager.Instance.PlaySFX("DeathSound");
 
         if (isGrounded)
         {

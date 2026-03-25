@@ -1,30 +1,20 @@
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
-public class AudioManager : MonoBehaviour
+public class AudioManager : GenericSingleton<AudioManager>
 {
     [SerializeField] private AudioMixer _mixer;
-    [SerializeField] private Slider _masterSlider;
-    [SerializeField] private Slider _musicSlider;
-    [SerializeField] private Slider _sfxSlider;
 
     public Sound[] musicSounds, sfxSounds;
     public AudioSource musicSource, sfxSource;
 
-    void SetSliderValue(Slider slider, string group)
+    public void SetSliderValue(Slider slider, string group)
     {
         if (_mixer.GetFloat(group, out float decibel))
         {
             float percentage = Mathf.Pow(10, decibel / 20);
             slider.value = percentage;
         }
-    }
-
-    public void UpdateSlider()
-    {
-        SetSliderValue(_masterSlider, "Master");
-        SetSliderValue(_musicSlider, "Music");
-        SetSliderValue(_sfxSlider, "SFX");
     }
 
     public void SetVolume(float value, string group)
