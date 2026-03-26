@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085c14cf046f8274c80b11d35c707c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinRotSpeed: 100
-  _coinValue: 10
+  _rotSpeed: 100
+  _coinValue: 1
 --- !u!135 &3323004597752737508
 SphereCollider:
   m_ObjectHideFlags: 0

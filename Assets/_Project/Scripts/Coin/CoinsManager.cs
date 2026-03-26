@@ -14,7 +14,7 @@ public class CoinsManager : MonoBehaviour
     public GameObject Door;
     public bool levelcompleted = false;
 
-    public Action<int,int> OnCoinsUpdated;
+    public Action<int, int> OnCoinsUpdated;
 
     private void Awake()
     {
@@ -32,5 +32,11 @@ public class CoinsManager : MonoBehaviour
     {
         _currentCoins += amount;
         OnCoinsUpdated?.Invoke(_currentCoins, _coinsToPickup);
+        if (_currentCoins >= _coinsToPickup && !levelcompleted)
+        {
+            levelcompleted = true;
+            AudioManager.Instance.PlaySFX("WinSound");
+            Door.SetActive(false);
+        }
     }
 }
