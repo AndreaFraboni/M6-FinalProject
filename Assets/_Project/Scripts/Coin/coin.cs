@@ -1,22 +1,19 @@
 using UnityEngine;
 
-public class Coin : MonoBehaviour
+public class Coin : MonoBehaviour, IPickable
 {
     [Header("COIN object 3D Parameters")]
-    [SerializeField] private float _coinRotSpeed = 100f;
+    [SerializeField] private float _rotSpeed = 100f;
     [SerializeField] private int _coinValue = 10;
 
     void Update()
     {
-        transform.Rotate(_coinRotSpeed * Time.deltaTime, 0, 0);
+        transform.Rotate(_rotSpeed * Time.deltaTime, 0, 0);
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void PickUp(Collector collector)
     {
-        if (other.CompareTag(Tags.Player))
-        {
-            other.gameObject.GetComponent<PlayerController>().GetCoins(_coinValue);
-            Destroy(gameObject);
-        }
+        collector.AddCoins(_coinValue);
+        Destroy(gameObject);
     }
 }

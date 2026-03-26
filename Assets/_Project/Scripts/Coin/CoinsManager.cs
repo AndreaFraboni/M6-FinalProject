@@ -7,9 +7,6 @@ public class CoinsManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _currentCoinstext;
     [SerializeField] private PlayerController _pc;
 
-    [Header("Audio Manager")]
-    [SerializeField] private AudioManager _audioManager;
-
     [Header("UI Manager")]
     [SerializeField] private UIManager _UIManager;
 
@@ -38,17 +35,18 @@ public class CoinsManager : MonoBehaviour
 
     private void Update()
     {
-        if (_currentCoins >= _coinsToPickup && !levelcompleted)
-        {
-            levelcompleted = true;
-            AudioManager.Instance.PlaySFX("WinSound");
-            Door.SetActive(false);
-        }
+        //if (_currentCoins >= _coinsToPickup && !levelcompleted)
+        //{
+        //    levelcompleted = true;
+        //    AudioManager.Instance.PlaySFX("WinSound");
+        //    Door.SetActive(false);
+        //}
     }
 
     public void OnCoinPickup(int currentcoins)
     {
         _currentCoins = currentcoins;
+
         _currentCoinstext.text = $"{currentcoins}/{_coinsToPickup}";
     }
 }

@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class CoinTime : MonoBehaviour
+public class CoinTime : MonoBehaviour, IPickable
 {
     [Header("COIN TIME parameters")]
-    [SerializeField] private float _coinRotSpeed = 100f;
+    [SerializeField] private float _rotSpeed = 100f;
     [SerializeField] private Timer _timer;
-    [SerializeField] private float addtime = 10;
+    [SerializeField] private float _addtime = 10;
 
     private void Awake()
     {
@@ -17,16 +17,13 @@ public class CoinTime : MonoBehaviour
 
     void Update()
     {
-        transform.Rotate(_coinRotSpeed * Time.deltaTime, 0, 0);
+        transform.Rotate(_rotSpeed * Time.deltaTime, 0, 0);
     }
 
-    private void OnTriggerEnter(Collider other)
+
+    public void PickUp(Collector collector)
     {
-        if (other.CompareTag(Tags.Player))
-        {
-            _timer.AddTime(addtime);
-            Destroy(gameObject);
-        }
+        collector.AddTime(_addtime);
+        Destroy(gameObject);
     }
-
 }

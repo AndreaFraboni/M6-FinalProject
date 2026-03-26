@@ -64,11 +64,6 @@ public class LifeController : MonoBehaviour
         AddHp(-damage);
     }
 
-    //public void Heal(int amount)
-    //{
-    //    AddHp(amount);
-    //}
-
 }
 
 
