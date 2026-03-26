@@ -1,5 +1,71 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &506877148099104691
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8662382080005795632}
+  - component: {fileID: 210918355793500825}
+  - component: {fileID: 5072151700556356874}
+  m_Layer: 6
+  m_Name: Collector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8662382080005795632
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506877148099104691}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.52, z: 0}
+  m_LocalScale: {x: 1.1679, y: 1, z: 1.4136}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7302491606436708944}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &210918355793500825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506877148099104691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dca58528dd547840a117281aa6d4221, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &5072151700556356874
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506877148099104691}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &569753214213681487
 GameObject:
   m_ObjectHideFlags: 0
@@ -89,6 +155,7 @@ Transform:
   m_Children:
   - {fileID: 4841356159208118214}
   - {fileID: 5371352243791926233}
+  - {fileID: 8662382080005795632}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8594256588094412093
@@ -161,30 +228,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2c430c13a1e5a441a826385c2b40a2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bar_lifeBarFillable: {fileID: 0}
-  _lifeText: {fileID: 0}
-  _currentCoinstext: {fileID: 0}
   _speed: 5
   _smooth: 10
   _jumpForce: 5
-  _audioManager: {fileID: 0}
-  _UIManager: {fileID: 0}
   _playerAnimation: {fileID: 0}
-  _onCoinPickup:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CoinsManager, Assembly-CSharp
-        m_MethodName: OnCoinPickup
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _lifeController: {fileID: 0}
   isAlive: 1
   isGrounded: 0
   isJump: 0
@@ -232,37 +280,6 @@ MonoBehaviour:
   _currenthp: 100
   _maxHP: 100
   _fullHPOnStart: 1
-  _onHPChanged:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2572989825296250565}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnChangeLife
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _onDefeated:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2572989825296250565}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnDefeated
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _pc: {fileID: 0}
   _audioManager: {fileID: 0}
 --- !u!114 &714775041370404543
 MonoBehaviour:

@@ -1,4 +1,4 @@
 public interface IPickable
 {
-    void PickUp(Collector collector);
+    void PickUp(Picker collector);
 }

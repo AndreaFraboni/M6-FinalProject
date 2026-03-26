@@ -6802,10 +6802,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ce1e93e941d71e419272429d432f46d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentCoinstext: {fileID: 287696746}
-  _pc: {fileID: 0}
-  _audioManager: {fileID: 0}
-  _UIManager: {fileID: 0}
   _currentCoins: 0
   _coinsToPickup: 100
   Door: {fileID: 616586907}
@@ -12093,6 +12089,7 @@ GameObject:
   - component: {fileID: 653874687}
   - component: {fileID: 653874689}
   - component: {fileID: 653874688}
+  - component: {fileID: 653874690}
   m_Layer: 5
   m_Name: Timer
   m_TagString: Untagged
@@ -12158,6 +12155,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 653874686}
   m_CullTransparentMesh: 1
+--- !u!114 &653874690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653874686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e5919860481c544dbd4408f20cef3bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currenTimeText: {fileID: 496092700}
 --- !u!1001 &656874049
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20715,7 +20725,7 @@ GameObject:
   - component: {fileID: 1077592231}
   - component: {fileID: 1077592230}
   m_Layer: 10
-  m_Name: Timer
+  m_Name: TimeManager
   m_TagString: Timer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20735,8 +20745,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _countDown: 300
   _currentTime: 0
-  _currentTimetext: {fileID: 496092700}
-  _UIManager: {fileID: 5008262536102321872}
   gameOver: {fileID: 326124224885540437}
   menuGameOver: {fileID: 891286782}
 --- !u!4 &1077592231
@@ -27724,6 +27732,7 @@ GameObject:
   - component: {fileID: 1479283379}
   - component: {fileID: 1479283381}
   - component: {fileID: 1479283380}
+  - component: {fileID: 1479283382}
   m_Layer: 5
   m_Name: Coins
   m_TagString: Untagged
@@ -27790,6 +27799,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1479283378}
   m_CullTransparentMesh: 1
+--- !u!114 &1479283382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1479283378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d38da7f8c1b032a439c2a7ec3222a172, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currenCoinsText: {fileID: 287696746}
 --- !u!1001 &1483955939
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42169,26 +42191,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2572989825296250565, guid: 4691fe43b6b873146986f5eba7682fd7,
+    - target: {fileID: 506877148099104691, guid: 4691fe43b6b873146986f5eba7682fd7,
         type: 3}
-      propertyPath: _lifeText
-      value: 
-      objectReference: {fileID: 4919361505252593972}
-    - target: {fileID: 2572989825296250565, guid: 4691fe43b6b873146986f5eba7682fd7,
-        type: 3}
-      propertyPath: _currentCoinstext
-      value: 
-      objectReference: {fileID: 287696746}
-    - target: {fileID: 2572989825296250565, guid: 4691fe43b6b873146986f5eba7682fd7,
-        type: 3}
-      propertyPath: _bar_lifeBarFillable
-      value: 
-      objectReference: {fileID: 3198255234506003291}
-    - target: {fileID: 2572989825296250565, guid: 4691fe43b6b873146986f5eba7682fd7,
-        type: 3}
-      propertyPath: _onCoinPickup.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 347256707}
+      propertyPath: m_Name
+      value: Picker
+      objectReference: {fileID: 0}
     - target: {fileID: 5770510977194515082, guid: 4691fe43b6b873146986f5eba7682fd7,
         type: 3}
       propertyPath: m_Name
@@ -47002,8 +47009,8 @@ SceneRoots:
   - {fileID: 333277019}
   - {fileID: 594089693}
   - {fileID: 1476188383}
-  - {fileID: 5183746719990376156}
   - {fileID: 6713261905585706568}
+  - {fileID: 5183746719990376156}
   - {fileID: 4978585262159933612}
   - {fileID: 1077592231}
   - {fileID: 347256706}

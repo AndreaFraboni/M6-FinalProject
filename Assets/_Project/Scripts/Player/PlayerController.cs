@@ -8,14 +8,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _smooth = 10f;
     [SerializeField] private float _jumpForce = 5f;
 
-    [Header("UI Manager")]
-    [SerializeField] private UIManager _UIManager;
-
     [Header("Player Animation")]
     [SerializeField] private PlayerAnimation _playerAnimation;
-
-    [Header("OnCoinPickup Event")]
-    [SerializeField] private UnityEvent<int> _onCoinPickup;
 
     [SerializeField] private LifeController _lifeController;
 
@@ -50,7 +44,6 @@ public class PlayerController : MonoBehaviour
         if (_rb == null) _rb = GetComponent<Rigidbody>();
         if (_mover == null) _mover = GetComponent<Mover>();
         if (_rotator == null) _rotator = GetComponent<Rotator>();
-        if (_UIManager == null) _UIManager = FindAnyObjectByType<UIManager>();
         if (_playerAnimation == null) _playerAnimation = GetComponentInParent<PlayerAnimation>();
         if (_capsuleCollider == null) _capsuleCollider = GetComponent<CapsuleCollider>();
         if (_lifeController == null) _lifeController = GetComponent<LifeController>();
@@ -166,27 +159,22 @@ public class PlayerController : MonoBehaviour
         _rb.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
     }
 
-    public void GetCoins(int coinValue)
-    {
-        AudioManager.Instance.PlaySFX("PickupCoin");
-        _currentCoins++;
-        _onCoinPickup.Invoke(_currentCoins);
-    }
-
     public void PlayerHitByObject()
     {
         AudioManager.Instance.PlaySFX("GetDamage");
     }
-
-    public void DestroyGOPlayer()
-    {
-        _UIManager.GameOver();
-        Destroy(gameObject);
-    }
-
+    
     public void FootStepSound()
     {
         AudioManager.Instance.PlaySFX("FootStep");
+    }
+
+    public void DestroyGOPlayer()
+    {
+        
+        //_UIManager.GameOver();
+
+        Destroy(gameObject);
     }
 
     private void StartDeathAnimation()

@@ -11,7 +11,7 @@ public class Coin : MonoBehaviour, IPickable
         transform.Rotate(_rotSpeed * Time.deltaTime, 0, 0);
     }
 
-    public void PickUp(Collector collector)
+    public void PickUp(Picker collector)
     {
         collector.AddCoins(_coinValue);
         Destroy(gameObject);

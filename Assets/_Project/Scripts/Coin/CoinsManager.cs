@@ -1,14 +1,10 @@
-using UnityEngine;
+using System;
 using TMPro;
+using UnityEngine;
 
 public class CoinsManager : MonoBehaviour
 {
-    [Header("Coin Manager referements")]
-    [SerializeField] private TextMeshProUGUI _currentCoinstext;
-    [SerializeField] private PlayerController _pc;
-
-    [Header("UI Manager")]
-    [SerializeField] private UIManager _UIManager;
+    public static CoinsManager Instance { get; private set; }
 
     [Header("Coins State")]
     public int _currentCoins = 0;
@@ -18,35 +14,23 @@ public class CoinsManager : MonoBehaviour
     public GameObject Door;
     public bool levelcompleted = false;
 
+    public Action<int,int> OnCoinsUpdated;
+
     private void Awake()
     {
-        if (_pc == null) _pc = GetComponent<PlayerController>();
-        if (_UIManager == null) _UIManager = FindAnyObjectByType<UIManager>();
-    }
-
-    private void OnEnable()
-    {
-        if (_pc != null)
+        if (Instance != null && Instance != this)
         {
-            _currentCoins = _pc._currentCoins;
-            _currentCoinstext.text = $"{_currentCoins}/{_coinsToPickup}";
+            Destroy(gameObject);
+            return;
         }
+
+        Instance = this;
+        //DontDestroyOnLoad(gameObject);
     }
 
-    private void Update()
+    public void AddCoins(int amount)
     {
-        //if (_currentCoins >= _coinsToPickup && !levelcompleted)
-        //{
-        //    levelcompleted = true;
-        //    AudioManager.Instance.PlaySFX("WinSound");
-        //    Door.SetActive(false);
-        //}
-    }
-
-    public void OnCoinPickup(int currentcoins)
-    {
-        _currentCoins = currentcoins;
-
-        _currentCoinstext.text = $"{currentcoins}/{_coinsToPickup}";
+        _currentCoins += amount;
+        OnCoinsUpdated?.Invoke(_currentCoins, _coinsToPickup);
     }
 }

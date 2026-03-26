@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager Instance { get; private set; }
+
     // UI referements
     public GameObject pauseMenu;
     public GameObject gameOver;
@@ -12,9 +14,22 @@ public class UIManager : MonoBehaviour
 
     public bool isPaused = false;
 
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        //DontDestroyOnLoad(gameObject);
+    }
+
     private void Start()
     {
         if (!AudioManager.Instance.musicSource.isPlaying) AudioManager.Instance.PlayMusic("ThemeGame");
+
     }
 
     public void PlayClickSound()

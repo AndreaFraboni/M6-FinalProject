@@ -11,7 +11,7 @@ public class Heart : MonoBehaviour, IPickable
         transform.Rotate(_rotSpeed * Time.deltaTime, 0, 0);
     }
 
-    public void PickUp(Collector collector)
+    public void PickUp(Picker collector)
     {
         collector.AddHealth(_value);
         Destroy(gameObject);

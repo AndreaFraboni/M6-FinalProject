@@ -1,31 +1,40 @@
-using UnityEngine;
+using System;
 using TMPro;
+using UnityEngine;
 
-public class Timer : MonoBehaviour
+public class TimeManager : MonoBehaviour
 {
+    public static TimeManager Instance { get; private set; }
+
     [Header("TIMER SETTINGS")]
     [SerializeField] private float _countDown = 600f; // Durata del timer in secondi 600f = 10 minuti
     [SerializeField] private float _currentTime;
-    [SerializeField] private TextMeshProUGUI _currentTimetext;
-    [SerializeField] private UIManager _UIManager;
 
     public GameObject gameOver;
     public GameObject menuGameOver;
 
-    AudioManager _audioManager;
+    public Action<float> OnTimeChanged;
 
     private void Awake()
     {
-        _currentTimetext.text = $"{(int)_currentTime} s";
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        //DontDestroyOnLoad(gameObject);
+
+        OnTimeChanged?.Invoke(_currentTime);
         _currentTime = _countDown;
-        if (_audioManager == null) _audioManager = FindAnyObjectByType<AudioManager>();
     }
 
     private void Update()
     {
         _currentTime -= Time.deltaTime;
 
-        TimeManager();
+        TimeUpdate();
 
         if (_currentTime <= 0)
         {
@@ -34,22 +43,22 @@ public class Timer : MonoBehaviour
         }
     }
 
-    private void TimeManager()
+    private void TimeUpdate()
     {
         int secondiTrascorsi = (int)_currentTime;
-        _currentTimetext.text = $"{secondiTrascorsi} s";
+        OnTimeChanged?.Invoke(_currentTime);
     }
 
     public void AddTime(float value)
     {
-        _audioManager.PlaySFX("PickupCoinTimer");
+        AudioManager.Instance.PlaySFX("PickupCoinTimer");
         _currentTime += value;
         if (_currentTime >= _countDown) _currentTime = _countDown;
     }
 
     public void GameOver()
     {
-        _UIManager.GameOver();
+        UIManager.Instance.GameOver();
     }
 }
 
