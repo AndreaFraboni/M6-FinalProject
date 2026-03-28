@@ -1,15 +1,17 @@
 using UnityEngine;
+using static UnityEngine.UI.Image;
 
 public class MagicSphere : MonoBehaviour
-{
+{    
     [Header("MagicSphere Parameters")]
-    [SerializeField] private int _damage = 10;
     [SerializeField] private float _lifeSpan = 5f;
     [SerializeField] private float _speed = 10f;
+    [SerializeField] private int _damage = 10;
 
-    [Header("MagicSphere Damage Around impact point")]
-    [SerializeField] private float _explosionRadius = 5f;
-    [SerializeField] private LayerMask _damageLayers;
+    public DamageTarget _damageTarget = DamageTarget.Enemy;
+
+    [SerializeField] private GameObject _explosionWavePrefab;
+    [SerializeField] private Material _explosionMaterial;
 
     [Header("Audio Manager")]
     [SerializeField] private AudioManager _audioManager;
@@ -47,23 +49,27 @@ public class MagicSphere : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        _audioManager.PlaySFX("MagicSpellExplode");
+        if (AudioManager.Instance!=null) AudioManager.Instance.PlaySFX("MagicSpellExplode");
+
+        Vector3 hitPoint = transform.position;
+
+        SpawnExplosionWave(hitPoint);
         Explode();
+    }
+
+    private void SpawnExplosionWave(Vector3 position)
+    {
+        if (_explosionWavePrefab == null) return;
+        GameObject Wave = Instantiate(_explosionWavePrefab, position, Quaternion.identity);
+        Wave.GetComponent<ExplosionWave>().SetMaterialWave(_explosionMaterial);
+        Wave.GetComponent<ExplosionWave>().SetDamageWave(_damage);
+        Wave.GetComponent<ExplosionWave>().SetDamageTarget(_damageTarget);
     }
 
     private void Explode()
     {
         if (_isExploded) return;
         _isExploded = true;
-
-        Collider[] hits = Physics.OverlapSphere(transform.position, _explosionRadius, _damageLayers);
-        foreach (Collider hit in hits)
-        {
-            if (hit.TryGetComponent<LifeController>(out LifeController life))
-            {
-                life.TakeDamage(_damage);
-            }
-        }
         Destroy(gameObject);
     }
 }

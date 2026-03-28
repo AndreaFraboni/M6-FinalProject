@@ -146,8 +146,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d02d251556d29a249b8568d3a009f83c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioManager: {fileID: 0}
   _explosionRadius: 5
   _damage: 25
-  _damageLayers:
+  _damageLayer:
     serializedVersion: 2
     m_Bits: 64
+  _explosionWavePrefab: {fileID: 1198018687069149517, guid: 76066dfbc85586c40ab92f1efc8258d6,
+    type: 3}
+  _explosionMaterial: {fileID: 2100000, guid: 5e5fed87c50284247ac97ed5ec25825a, type: 2}

@@ -172,7 +172,7 @@ public class PlayerController : MonoBehaviour
     public void DestroyGOPlayer()
     {
         
-        //_UIManager.GameOver();
+        UIManager.Instance.GameOver();
 
         Destroy(gameObject);
     }
